@@ -1,9 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-console.log("___HOST", process.env.HOST);
-
 const client = new ApolloClient({
-  uri: process.env.HOST,
+  uri: process.env.REACT_APP_APOLLO_HOST,
   cache: new InMemoryCache()
 })
 
