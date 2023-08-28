@@ -1,14 +1,17 @@
-import { GET_MOVIES, useMovies } from '../apollo';
+import { useRequest } from '../apollo';
+import { Movie, Layout } from "../components";
+import { Error, Loading, Section } from '../components/StyledComponents';
+import { GET_MOVIES } from '../constants';
 
 export const Home = () => {
-  const { loading, error, data } = useMovies(GET_MOVIES);
-  console.log(loading, error, data);
+  const { loading, error, data } = useRequest(GET_MOVIES);
   return (
-    <>
-      <h1>"Home page"</h1>
-      {loading && !data && <h3>Loading...</h3>}
-      <hr />
-      {data?.movies && data.movies.map(m => (<p key={m.id}>{m.title}</p>))}
-    </>
+    <Layout>
+      {loading && !data && <Loading>Loading...</Loading>}
+      {!loading && error && <Error>{error.message}</Error>}
+      <Section>
+        {data?.movies && data.movies.map(({ id, title }) => (<Movie key={id} id={id} title={title}/>))}
+      </Section>
+    </Layout>
   )
 };
