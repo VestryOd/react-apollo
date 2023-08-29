@@ -20,6 +20,9 @@ export const GET_MOVIE = gql`
             url
             language
             medium_cover_image
+            medium_cover_image
+            description_intro
+            summary
         }
     }
 `;

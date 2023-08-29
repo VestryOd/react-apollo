@@ -10,7 +10,11 @@ export const Home = () => {
       {loading && !data && <Loading>Loading...</Loading>}
       {!loading && error && <Error>{error.message}</Error>}
       <Section>
-        {data?.movies && data.movies.map(({ id, title }) => (<Movie key={id} id={id} title={title}/>))}
+        {data?.movies && data.movies.map(({ id, medium_cover_image, title }) => {
+          return (
+            <Movie key={id} id={id} url={medium_cover_image} title={title}/>
+          )
+        })}
       </Section>
     </Layout>
   )

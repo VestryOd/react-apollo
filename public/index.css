@@ -16,3 +16,16 @@
     display: flex;
     justify-content: center;
 }
+
+.image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    object-fit: cover;
+}
+
+.image-details {
+    right: 0;
+    object-fit: fill;
+}

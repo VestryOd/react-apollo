@@ -1,6 +1,13 @@
 import { useParams } from "react-router-dom";
-import { Layout } from '../components';
-import { Error, Loading, MovieWrapper, Section, Subtitle } from '../components/StyledComponents';
+import { Image, Layout } from '../components';
+import {
+  Error,
+  Loading,
+  MovieColumn,
+  MovieContainer, MovieDescription, MoviePoster, MovieSubtitle,
+  MovieTitle,
+  Section,
+} from '../components/StyledComponents';
 import { useRequest } from '../apollo';
 import { GET_MOVIE } from '../constants';
 
@@ -10,17 +17,36 @@ export const Details = () => {
     variables: { id: +id },
   });
 
-  if (loading && !data?.movie) return <Loading>Loading...</Loading>
+  if (loading && !data?.movie) {
+    return (
+      <Layout>
+        <Loading>Loading...</Loading>
+      </Layout>
+    )
+  }
 
-  if (!loading && error) return <Error>{error.message}</Error>
+  if (!loading && error) {
+    return (
+      <Layout>
+        <Error>{error.message}</Error>
+      </Layout>
+    )
+  }
 
-  const { title } = data.movie;
+  const { title, language, rating, description_intro, summary, medium_cover_image } = data.movie;
   return (
     <Layout>
       <Section>
-        <MovieWrapper>
-          <Subtitle className="center">{title}</Subtitle>
-        </MovieWrapper>
+        <MovieContainer>
+          <MovieColumn>
+            <MovieTitle>{title}</MovieTitle>
+            <MovieSubtitle>{language} · {rating}</MovieSubtitle>
+            <MovieDescription>{description_intro || summary}</MovieDescription>
+          </MovieColumn>
+          <MoviePoster>
+            <Image id={id} title={title} url={medium_cover_image} className="image-details" />
+          </MoviePoster>
+        </MovieContainer>
       </Section>
     </Layout>
   )
