@@ -11,6 +11,8 @@ export const Section = styled.section`
   max-width: 80%;
   width: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 export const Header = styled.header`
@@ -77,11 +79,11 @@ export const Error = styled.div`
 
 export const LinkContainer = styled.div`
   height: 380px;
-  width: 100%;
+  width: calc(50% - 2em);
   border-radius: 7px;
   overflow: hidden;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  margin: 1em 0;
+  margin: 1em;
 `;
 export const LinkPoster = styled.div`linear-gradient(-45deg, #d1ced1, #8d8b89);
   background-image: linear-gradient(-45deg, #d1ced1, #8d8b89);
@@ -96,6 +98,7 @@ export const PosterTitle = styled.p`
   position: absolute;
   bottom: 10%;
   left: 5%;
+  max-width: 80%;
   background-color: rgba(212, 210, 210, 0.7);
   padding: 0.5em;
   border-radius: 10px;
@@ -115,7 +118,7 @@ export const MovieContainer = styled.div`
   align-items: center;
   color: white;
   padding: 1em 0;
-  margin: 1em 0;
+  margin: 1em;
 `;
 
 export const MovieColumn = styled.div`
