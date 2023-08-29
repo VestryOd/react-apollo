@@ -16,6 +16,7 @@ export const Details = () => {
   const { loading, error, data } = useRequest(GET_MOVIE, {
     variables: { id: +id },
   });
+  console.log("--data", data);
 
   if (loading && !data?.movie) {
     return (
