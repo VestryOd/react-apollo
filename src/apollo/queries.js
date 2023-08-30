@@ -34,7 +34,7 @@ export const GET_MOVIE = gql`
 `;
 
 export const LIKE_MOVIE = gql`
-    mutation likeMovie($id: Int) {
-        likeMovie(id: $id) @client
+    mutation toggleLikeMovie($id: Int, $isLiked: Boolean!) {
+        toggleLikeMovie(id: $id, isLiked: $isLiked) @client
     }
 `;

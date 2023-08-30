@@ -1,4 +1,5 @@
-export const IconHeart = ({ color, ...rest }) => {
+export const IconHeart = ({ isLiked, ...rest }) => {
+  const color = isLiked ? "#ca1a1a" : "#808080";
   return (
     <svg
       fill={color}

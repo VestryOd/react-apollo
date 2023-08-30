@@ -8,14 +8,14 @@ import { LIKE_MOVIE } from '../constants';
 
 export const Movie = ({ id, title, url, isLiked }) => {
 
-  const [likeMovie] = useMutation(queries[LIKE_MOVIE], {
-    variables: { id: parseInt(id) }
+  const [toggleLikeMovie] = useMutation(queries[LIKE_MOVIE], {
+    variables: { id: parseInt(id), isLiked }
   });
 
   return (
     <LinkContainer>
       <LinkPoster>
-        <LikeButton isLiked={isLiked} onClick={isLiked ? null : likeMovie} />
+        <LikeButton isLiked={isLiked} onClick={toggleLikeMovie} />
         <Image id={id} title={title} url={url} />
         <Link to={`/${id}`} className="link">
           <PosterTitle>{title}</PosterTitle>

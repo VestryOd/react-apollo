@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Image, Layout } from '../components';
+import { Image, Layout, LikeButton } from '../components';
 import {
   Error,
   Loading,
@@ -16,7 +16,6 @@ export const Details = () => {
   const { loading, error, data } = useRequest(GET_MOVIE, {
     variables: { id: +id },
   });
-  console.log("--data", data);
 
   if (loading && !data?.movie) {
     return (
@@ -34,7 +33,7 @@ export const Details = () => {
     )
   }
 
-  const { title, language, rating, description_intro, summary, medium_cover_image } = data.movie;
+  const { title, language, rating, description_intro, summary, medium_cover_image, isLiked } = data.movie;
   return (
     <Layout>
       <Section>
@@ -45,6 +44,7 @@ export const Details = () => {
             <MovieDescription>{description_intro || summary}</MovieDescription>
           </MovieColumn>
           <MoviePoster>
+            <LikeButton isLiked={isLiked} />
             <Image id={id} title={title} url={medium_cover_image} className="image-details" />
           </MoviePoster>
         </MovieContainer>
